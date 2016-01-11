@@ -1,3 +1,18 @@
+'use strict';
+
+// $.getJSON( 'world-countries/countries.json', function( data ) {
+//   var items = [];
+//   $.each( data, function( key, val ) {
+//     items.push( "<li id='" + key + "'>" + val + "</li>" );
+//   });
+ 
+//   $( "<ul/>", {
+//     "class": "my-new-list",
+//     html: items.join( "" )
+//   }).appendTo( "body" );
+// });
+
+
 var FilterRegionsSection = React.createClass({
 	// getInitialState: function() {
 	// 	var continents = {Europe: {
@@ -46,8 +61,8 @@ var RegionChart = React.createClass({
 	render: function() {
 		return (
 			<div className="chart-info">
-			  <h1> {this.props.demonym} American Household Income</h1>
-			  <p> Average: $50,000 </p>
+			  <h1> {this.props.country.demonym} American Household Income</h1>
+			  <p> Average: {accounting.formatMoney(this.props.country.income)} </p>
 			  <div className="ct-chart ct-perfect-fourth"></div>
 			</div> 
 		)
@@ -62,7 +77,12 @@ var Container = React.createClass({
 						   "HR": {name: "Croatia", "demonym": "Croatian", income: 46000}
 						   }
 						  };
-		return {continents: continents, selectedRegionCode: "HR"};
+		var countries = {
+						"IT": {name: "Italy", "demonym": "Italian", income: 50000},
+						"HR": {name: "Croatia", "demonym": "Croatian", income: 46000}
+						};
+
+		return {continents: continents, selectedRegionCode: "HR", countries: countries};
 	 },
 
 	handleChange: function(e) {
@@ -72,6 +92,7 @@ var Container = React.createClass({
 		this.setState({selectedRegionCode: value});
 	},
 	render: function() {
+		console.log("this.state.selectedRegionCode", this.state.selectedRegionCode, this.state.countries[this.state.selectedRegionCode]);
 		return (
 		    <div className="container">
 		      <div className="row marketing">
@@ -81,7 +102,7 @@ var Container = React.createClass({
 		        </div>
 
 		        <div id="region-chart" className="col-md-6">
-		        	<RegionChart demonym={this.state.continents["Europe"][this.state.selectedRegionCode].demonym}/>
+		        	<RegionChart country={this.state.countries[this.state.selectedRegionCode]}/>
 		        </div> 
 		      </div>
 		     </div>
@@ -167,4 +188,19 @@ series: [
 // Create a new line chart object where as first parameter we pass in a selector
 // that is resolving to our chart container element. The Second parameter
 // is the actual data object.
-new Chartist.Bar('.ct-chart', data);
+var myChart = new Chartist.Bar('.ct-chart', data);
+
+$("body").on("click", function() {
+	var labels = ['General American'];
+
+	var newData = {
+	// A labels array that can contain any sort of values
+	labels: ['General American', 'Croatian American', 'W. European American', 'European American'],
+	// Our series array that contains series objects or in this case series data arrays
+	series: [
+	[60000, 70000, 80000, 90000]
+	]
+	};
+
+	myChart.update(newData);
+})
