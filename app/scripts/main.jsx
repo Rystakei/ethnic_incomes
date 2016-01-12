@@ -1,34 +1,32 @@
 'use strict';
 
-// $.getJSON( 'world-countries/countries.json', function( data ) {
-//   var items = [];
-//   $.each( data, function( key, val ) {
-//     items.push( "<li id='" + key + "'>" + val + "</li>" );
-//   });
- 
-//   $( "<ul/>", {
-//     "class": "my-new-list",
-//     html: items.join( "" )
-//   }).appendTo( "body" );
-// });
+var options = [
+    { value: 'one', label: 'One' },
+    { value: 'two', label: 'Two' }
+];
+
+function logChange(val) {
+    console.log("Selected: " + val);
+}
+
 
 
 var FilterRegionsSection = React.createClass({
-	// getInitialState: function() {
-	// 	var continents = {Europe: {
-	// 					   "IT": {name: "Italy", "demonym": "Italian", income: 50000},
-	// 					   "HR": {name: "Croatia", "demonym": "Croatian", income: 46000}
-	// 					   }
-	// 					  };
-	// 	return {continents: continents, selectedRegionCode: "IT"};
-	//  },
-
+	getInitialState: function(e) {
+		return { value: 'HR'};
+	},
 	handleChange: function(e) {
+		console.log("change");
+		this.setState({value: e.target.value});
 		this.props.callbackParent(e.target.value);
 	},
 	render: function() {
 		var options = [];
-		//need to generate dynmically options and then add them
+
+		$.each(this.props.countries, function(key, country) {
+			options.push(<option key={country.countryCode} value={country.countryCode}>{country.name}</option>);
+		});
+		//need to generate dynamically options and then add them
 		return (
 			<div className="world-chart-col">
 			  <label> Continents</label>
@@ -43,12 +41,9 @@ var FilterRegionsSection = React.createClass({
 			    <option>Eastern Europe</option>
 			  </select>
 			  <label>Countries</label>
-			  <select onChange={this.handleChange} className="form-control countries-select">
-			    <option value="IT">Italy</option>
-			    <option value="HR">Croatia</option>
-			    <option value="BY">Belarus</option>
-			    <option value="RU">Russia</option>
-			  </select>
+			  // <select onChange={this.handleChange} value={this.state.value} className="form-control countries-select">
+			  // 	{options}
+			  // </select>
 
 			  <div id="world-map" className="col-md-6 map">
 			  </div>
@@ -59,6 +54,7 @@ var FilterRegionsSection = React.createClass({
 
 var RegionChart = React.createClass({
 	render: function() {
+		console.log("region chart", this.props.country);
 		return (
 			<div className="chart-info">
 			  <h1> {this.props.country.demonym} American Household Income</h1>
@@ -72,17 +68,12 @@ var RegionChart = React.createClass({
 
 var Container = React.createClass({
 	getInitialState: function() {
-		var continents = {Europe: {
-						   "IT": {name: "Italy", "demonym": "Italian", income: 50000},
-						   "HR": {name: "Croatia", "demonym": "Croatian", income: 46000}
-						   }
-						  };
 		var countries = {
 						"IT": {name: "Italy", "demonym": "Italian", income: 50000},
 						"HR": {name: "Croatia", "demonym": "Croatian", income: 46000}
 						};
 
-		return {continents: continents, selectedRegionCode: "HR", countries: countries};
+		return {selectedRegionCode: "HR", countries: countries};
 	 },
 
 	handleChange: function(e) {
@@ -98,7 +89,7 @@ var Container = React.createClass({
 		      <div className="row marketing">
 		        <div> <h1> U.S. Household Income by National Origin</h1></div>
 		        <div id="filter-regions" className="col-md-6">
-		        <FilterRegionsSection callbackParent={this.onChildChanged} />
+		        <FilterRegionsSection countries={this.state.countries} callbackParent={this.onChildChanged} />
 		        </div>
 
 		        <div id="region-chart" className="col-md-6">

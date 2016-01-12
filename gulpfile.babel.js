@@ -36,6 +36,22 @@ gulp.task('templates', () => {
     .pipe(gulp.dest('.tmp/scripts'));
 });
 
+gulp.task('webpack', cb => {
+  webpack({
+    entry: './app/scripts/webpack.js',
+    output: {
+      path: '.tmp/scripts/',
+      filename: 'bundle.js',
+    },
+  }, (err, stats) => {
+    if (err) {
+      throw new gutil.PluginError('webpack', err);
+    }
+
+    cb();
+  });
+});
+
 function lint(files, options) {
   return () => {
     return gulp.src(files)
@@ -54,7 +70,7 @@ const testLintOptions = {
 gulp.task('lint', lint('app/scripts/**/*.js'));
 gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 
-gulp.task('html', ['styles', 'templates'], () => {
+gulp.task('html', ['styles', 'templates', 'webpack'], () => {
   return gulp.src('app/*.html')
     .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
     .pipe($.if('*.js', $.uglify()))
@@ -97,7 +113,7 @@ gulp.task('extras', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['styles', 'templates', 'fonts'], () => {
+gulp.task('serve', ['styles', 'templates', 'fonts', 'webpack'], () => {
   browserSync({
     notify: false,
     port: 9000,
@@ -120,6 +136,7 @@ gulp.task('serve', ['styles', 'templates', 'fonts'], () => {
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/fonts/**/*', ['fonts']);
   gulp.watch('app/scripts/**/*.jsx', ['templates', reload]);
+  gulp.watch('app/scripts/**/webpack.js', ['webpack']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
 });
 
