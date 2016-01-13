@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "react": "^0.14.6",
+    "react-chartist": "^0.10.1",
     "react-dom": "^0.14.6",
     "react-select": "^1.0.0-beta8",
     "webpack": "^1.12.10"

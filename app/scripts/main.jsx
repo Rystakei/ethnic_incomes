@@ -1,22 +1,10 @@
 'use strict';
 
-var options = [
-    { value: 'one', label: 'One' },
-    { value: 'two', label: 'Two' }
-];
-
-function logChange(val) {
-    console.log("Selected: " + val);
-}
-
-
-
 var FilterRegionsSection = React.createClass({
 	getInitialState: function(e) {
 		return { value: 'HR'};
 	},
 	handleChange: function(e) {
-		console.log("change");
 		this.setState({value: e.target.value});
 		this.props.callbackParent(e.target.value);
 	},
@@ -24,7 +12,8 @@ var FilterRegionsSection = React.createClass({
 		var options = [];
 
 		$.each(this.props.countries, function(key, country) {
-			options.push(<option key={country.countryCode} value={country.countryCode}>{country.name}</option>);
+			console.log("countryCode", country.code);
+			options.push(<option key={country.code} value={country.code}>{country.name}</option>);
 		});
 		//need to generate dynamically options and then add them
 		return (
@@ -37,19 +26,42 @@ var FilterRegionsSection = React.createClass({
 			  <label> Subregion</label>
 			  <select className="form-control">
 			    <option> None </option>
-			    <option selected>Western Europe</option>
+			    <option>Western Europe</option>
 			    <option>Eastern Europe</option>
 			  </select>
 			  <label>Countries</label>
-			  // <select onChange={this.handleChange} value={this.state.value} className="form-control countries-select">
-			  // 	{options}
-			  // </select>
+			  <select onChange={this.handleChange} value={this.state.value} className="form-control countries-select">
+			  {options}
+			  </select>
 
 			  <div id="world-map" className="col-md-6 map">
 			  </div>
 			</div>
 		);
 	}
+});
+
+
+var IncomeGraph = React.createClass({
+	render: function() {
+		var country = this.props.country;
+
+		var regionLabel = "" + country.demonym + " American";
+
+		var data = {
+		// A labels array that can contain any sort of values
+		labels: ['General American', regionLabel, 'W. European American', 'European American'],
+		// Our series array that contains series objects or in this case series data arrays
+		series: [
+			    [50000, country.income, 55000, 45000]
+		]
+	};
+
+		var type = 'Bar';
+		return (
+			<ChartistGraph data={data} type={type} />
+		);
+}
 });
 
 var RegionChart = React.createClass({
@@ -59,7 +71,9 @@ var RegionChart = React.createClass({
 			<div className="chart-info">
 			  <h1> {this.props.country.demonym} American Household Income</h1>
 			  <p> Average: {accounting.formatMoney(this.props.country.income)} </p>
-			  <div className="ct-chart ct-perfect-fourth"></div>
+			  <div className="ct-chart ct-perfect-fourth">
+			  	<IncomeGraph country={this.props.country}></IncomeGraph>
+			  </div>
 			</div> 
 		)
 	}
@@ -69,8 +83,8 @@ var RegionChart = React.createClass({
 var Container = React.createClass({
 	getInitialState: function() {
 		var countries = {
-						"IT": {name: "Italy", "demonym": "Italian", income: 50000},
-						"HR": {name: "Croatia", "demonym": "Croatian", income: 46000}
+						"IT": {name: "Italy", code: "IT", "demonym": "Italian", income: 50000},
+						"HR": {name: "Croatia", code: "HR", "demonym": "Croatian", income: 46000}
 						};
 
 		return {selectedRegionCode: "HR", countries: countries};
@@ -108,7 +122,7 @@ ReactDOM.render(
 );
 
 
-
+// var WorldMap = React.createClass({});
 
 $('document').ready(function() {
 
@@ -167,31 +181,3 @@ $('document').ready(function() {
 });
 
 
-var data = {
-// A labels array that can contain any sort of values
-labels: ['General American', 'Italian American', 'W. European American', 'European American'],
-// Our series array that contains series objects or in this case series data arrays
-series: [
-[50000, 50000, 40000, 45000]
-]
-};
-
-// Create a new line chart object where as first parameter we pass in a selector
-// that is resolving to our chart container element. The Second parameter
-// is the actual data object.
-var myChart = new Chartist.Bar('.ct-chart', data);
-
-$("body").on("click", function() {
-	var labels = ['General American'];
-
-	var newData = {
-	// A labels array that can contain any sort of values
-	labels: ['General American', 'Croatian American', 'W. European American', 'European American'],
-	// Our series array that contains series objects or in this case series data arrays
-	series: [
-	[60000, 70000, 80000, 90000]
-	]
-	};
-
-	myChart.update(newData);
-})
