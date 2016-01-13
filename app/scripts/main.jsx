@@ -12,10 +12,9 @@ var FilterRegionsSection = React.createClass({
 		var options = [];
 
 		$.each(this.props.countries, function(key, country) {
-			console.log("countryCode", country.code);
 			options.push(<option key={country.code} value={country.code}>{country.name}</option>);
 		});
-		//need to generate dynamically options and then add them
+
 		return (
 			<div className="world-chart-col">
 			  <label> Continents</label>
@@ -34,8 +33,7 @@ var FilterRegionsSection = React.createClass({
 			  {options}
 			  </select>
 
-			  <div id="world-map" className="col-md-6 map">
-			  </div>
+        <WorldMap countryCode={this.state.value}></WorldMap>
 			</div>
 		);
 	}
@@ -44,20 +42,19 @@ var FilterRegionsSection = React.createClass({
 
 var IncomeGraph = React.createClass({
 	render: function() {
-		var country = this.props.country;
+		var country = this.props.country,
+        regionLabel = "" + country.demonym + " American",
+		    data = {
+            		labels: ['General American',
+                         regionLabel, 
+                         'W. European American',
+                         'European American'],
+            		series: [
+            			       [50000, country.income, 55000, 45000]
+            		        ]
+            	},
 
-		var regionLabel = "" + country.demonym + " American";
-
-		var data = {
-		// A labels array that can contain any sort of values
-		labels: ['General American', regionLabel, 'W. European American', 'European American'],
-		// Our series array that contains series objects or in this case series data arrays
-		series: [
-			    [50000, country.income, 55000, 45000]
-		]
-	};
-
-		var type = 'Bar';
+		    type = 'Bar';
 		return (
 			<ChartistGraph data={data} type={type} />
 		);
@@ -80,6 +77,72 @@ var RegionChart = React.createClass({
 });
 
 
+var WorldMap = React.createClass({
+  getInitialState: function() {
+    var options = { 
+          map: 'world_mill_en', 
+          backgroundColor: 'white',
+          regionStyle: {
+              initial: {
+                fill: '#B8E186'
+              },
+              selected: {
+                fill: '#F4A582'
+              }
+            },
+          series: {
+            regions: [{
+              attribute: 'fill',
+              color: 'pink'
+            }]
+          }
+        };
+
+        return {options: options};
+  },
+
+  componentDidMount: function() {
+    var initialColor = '#B8E186',
+       selectedColor = '#3e9d01',
+       countryCode = this.props.countryCode;
+
+       console.log("Code for country", countryCode); 
+
+    $(React.findDOMNode(this.refs.WorldVectorMap)).vectorMap({map: 'world_mill_en', 
+      backgroundColor: 'white',
+      regionStyle: {
+          initial: {
+            fill: '#B8E186'
+          },
+          selected: {
+            fill: '#F4A582'
+          }
+        },
+      series: {
+        regions: [{
+          attribute: 'fill',
+          color: 'pink'
+        }]
+      }
+      });
+
+    var mapObject = $('#world-map').vectorMap('get', 'mapObject');
+
+    var colorValues = {};
+    colorValues[countryCode]="red";
+    console.log("setting: ", colorValues);
+    mapObject.series.regions[0].setValues(colorValues);
+
+
+  },
+
+  render: function() {
+    console.log("rendering..");
+    return (<div id="world-map" className="col-md-6 map" ref="WorldVectorMap"></div>);
+  }
+});
+
+
 var Container = React.createClass({
 	getInitialState: function() {
 		var countries = {
@@ -97,7 +160,6 @@ var Container = React.createClass({
 		this.setState({selectedRegionCode: value});
 	},
 	render: function() {
-		console.log("this.state.selectedRegionCode", this.state.selectedRegionCode, this.state.countries[this.state.selectedRegionCode]);
 		return (
 		    <div className="container">
 		      <div className="row marketing">
@@ -122,62 +184,61 @@ ReactDOM.render(
 );
 
 
-// var WorldMap = React.createClass({});
 
-$('document').ready(function() {
+// $('document').ready(function() {
 
-	var initialColor = '#B8E186',
-		selectedColor = '#3e9d01';
+// 	var initialColor = '#B8E186',
+// 		selectedColor = '#3e9d01';
 
-	$('#world-map').vectorMap({map: 'world_mill_en', 
-		backgroundColor: 'white',
-		regionStyle: {
-	      initial: {
-	        fill: '#B8E186'
-	      },
-	      selected: {
-	        fill: '#F4A582'
-	      }
-	    },
-		series: {
-			regions: [{
-				attribute: 'fill',
-				color: 'pink'
-			}]
-		}
-		});
+// 	$('#world-map').vectorMap({map: 'world_mill_en', 
+// 		backgroundColor: 'white',
+// 		regionStyle: {
+// 	      initial: {
+// 	        fill: '#B8E186'
+// 	      },
+// 	      selected: {
+// 	        fill: '#F4A582'
+// 	      }
+// 	    },
+// 		series: {
+// 			regions: [{
+// 				attribute: 'fill',
+// 				color: 'pink'
+// 			}]
+// 		}
+// 		});
 
-	var regions = [];
-	var mapObject = $('#world-map').vectorMap('get', 'mapObject');
+// 	var regions = [];
+// 	var mapObject = $('#world-map').vectorMap('get', 'mapObject');
 
-	var selectedValue;
+// 	var selectedValue;
 
-	   mapObject.series.regions[0].setValues({
-         'IT': '#3e9d01'
-	   });
-
+// 	   mapObject.series.regions[0].setValues({
+//          'IT': '#3e9d01'
+// 	   });
 
 
 
-	   $('.countries-select').on('change', function() {
-	   	var countryCode = $('.countries-select').val();
-	   	console.log("selected Value", selectedValue);
-	   	if (!selectedValue) {
-	   		selectedValue = 'IT';
-	   	}
-    	   	var revertValues = {};
-    	   	revertValues[selectedValue]=initialColor;    	   		
+
+// 	   $('.countries-select').on('change', function() {
+// 	   	var countryCode = $('.countries-select').val();
+// 	   	console.log("selected Value", selectedValue);
+// 	   	if (!selectedValue) {
+// 	   		selectedValue = 'IT';
+// 	   	}
+//     	   	var revertValues = {};
+//     	   	revertValues[selectedValue]=initialColor;    	   		
 
 
-	   	mapObject.series.regions[0].setValues(revertValues);
+// 	   	mapObject.series.regions[0].setValues(revertValues);
 
-	   	selectedValue = countryCode;
-	   	var colorValues = {};
-	   	colorValues[countryCode]=selectedColor;
+// 	   	selectedValue = countryCode;
+// 	   	var colorValues = {};
+// 	   	colorValues[countryCode]=selectedColor;
 
-	   	mapObject.series.regions[0].setValues(colorValues);
+// 	   	mapObject.series.regions[0].setValues(colorValues);
 
-	   });
-});
+// 	   });
+// });
 
 
