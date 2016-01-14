@@ -5,8 +5,9 @@ var FilterRegionsSection = React.createClass({
 		return { value: 'HR'};
 	},
 	handleChange: function(e) {
-		this.setState({value: e.target.value});
-		this.props.callbackParent(e.target.value);
+		this.setState({value: e.target.value}, function() {
+			this.props.callbackParent(e.target.value);
+		});
 	},
 	render: function() {
 		var options = [];
@@ -17,23 +18,12 @@ var FilterRegionsSection = React.createClass({
 
 		return (
 			<div className="world-chart-col">
-			  <label> Continents</label>
-			  <select className="form-control">
-			    <option>Europe</option>
-			    <option>Africa</option>
-			  </select>
-			  <label> Subregion</label>
-			  <select className="form-control">
-			    <option> None </option>
-			    <option>Western Europe</option>
-			    <option>Eastern Europe</option>
-			  </select>
 			  <label>Countries</label>
 			  <select onChange={this.handleChange} value={this.state.value} className="form-control countries-select">
 			  {options}
 			  </select>
 
-        <WorldMap countryCode={this.state.value}></WorldMap>
+        	<WorldMap countryCode={this.state.value}></WorldMap>
 			</div>
 		);
 	}
@@ -76,6 +66,8 @@ var RegionChart = React.createClass({
 	}
 });
 
+
+var mapObject;
 
 var WorldMap = React.createClass({
   getInitialState: function() {
@@ -126,14 +118,19 @@ var WorldMap = React.createClass({
       }
       });
 
-    var mapObject = $('#world-map').vectorMap('get', 'mapObject');
+    mapObject = $('#world-map').vectorMap('get', 'mapObject');
 
-    var colorValues = {};
-    colorValues[countryCode]="red";
-    console.log("setting: ", colorValues);
-    mapObject.series.regions[0].setValues(colorValues);
+    // mapObject.series.regions[0].setValues(colorValues);
 
 
+  },
+
+  componentWillUpdate: function() {
+  	var colorValues = {};
+	  	colorValues[this.props.countryCode]="red";  
+	  	console.log("Country: ", this.props.countryCode);
+  		mapObject.reset();
+	  	mapObject.series.regions[0].setValues(colorValues);
   },
 
   render: function() {
