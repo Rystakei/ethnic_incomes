@@ -43,6 +43,12 @@ gulp.task('webpack', cb => {
       path: '.tmp/scripts/',
       filename: 'bundle.js',
     },
+    module: {
+      loaders: [{test: /\.json$/, loader: ['raw-loader']}]
+    },
+    resolve: {
+      extensions: ['.json']
+    }
   }, (err, stats) => {
     if (err) {
       throw new gutil.PluginError('webpack', err);
