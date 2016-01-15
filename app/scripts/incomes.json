@@ -1,0 +1,695 @@
+{
+  "DM": {
+    "name": "Dominica",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "ethnicity": "Dominican",
+    "income": 34925
+  },
+  "ZA": {
+    "name": "South Africa",
+    "region": "Africa",
+    "subregion": "Southern Africa",
+    "ethnicity": "South African",
+    "income": 81912
+  },
+  "PH": {
+    "name": "Philippines",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "ethnicity": "Filipino",
+    "income": 76954
+  },
+  "TW": {
+    "name": "Taiwan",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "ethnicity": "Taiwanese",
+    "income": 73988
+  },
+  "MT": {
+    "name": "Malta",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "ethnicity": "Maltese",
+    "income": 72847
+  },
+  "GB": {
+    "name": "United Kingdom",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "ethnicity": "British",
+    "income": 72268
+  },
+  "RU": {
+    "name": "Russia",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "ethnicity": "Russian",
+    "income": 72179
+  },
+  "AU": {
+    "name": "Australia",
+    "region": "Oceania",
+    "subregion": "Australia and New Zealand",
+    "ethnicity": "Australian",
+    "income": 72104
+  },
+  "LV": {
+    "name": "Latvia",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "ethnicity": "Latvian",
+    "income": 71797
+  },
+  "IR": {
+    "name": "Iran",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "ethnicity": "Iranian",
+    "income": 68028
+  },
+  "PK": {
+    "name": "Pakistan",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "ethnicity": "Pakistani",
+    "income": 67683
+  },
+  "LB": {
+    "name": "Lebanon",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "ethnicity": "Lebanese",
+    "income": 67264
+  },
+  "FJ": {
+    "name": "Fiji",
+    "region": "Oceania",
+    "subregion": "Melanesia",
+    "ethnicity": "Fijian",
+    "income": 67003
+  },
+  "AT": {
+    "name": "Austria",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "ethnicity": "Austrian",
+    "income": 66928
+  },
+  "IL": {
+    "name": "Israel",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "ethnicity": "Israeli",
+    "income": 66695
+  },
+  "JP": {
+    "name": "Japan",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "ethnicity": "Japanese",
+    "income": 66443
+  },
+  "LK": {
+    "name": "Sri Lanka",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "ethnicity": "Sri Lankan",
+    "income": 65606
+  },
+  "SI": {
+    "name": "Slovenia",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "ethnicity": "Slovene",
+    "income": 65269
+  },
+  "HR": {
+    "name": "Croatia",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "ethnicity": "Croatian",
+    "income": 61786
+  },
+  "RO": {
+    "name": "Romania",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "ethnicity": "Romanian",
+    "income": 64390
+  },
+  "GR": {
+    "name": "Greece",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "ethnicity": "Greek",
+    "income": 64227
+  },
+  "CH": {
+    "name": "Switzerland",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "ethnicity": "Swiss",
+    "income": 63682
+  },
+  "BE": {
+    "name": "Belgium",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "ethnicity": "Belgian",
+    "income": 63526
+  },
+  "RS": {
+    "name": "Serbia",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "ethnicity": "Serbian",
+    "income": 63319
+  },
+  "PL": {
+    "name": "Poland",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "ethnicity": "Polish",
+    "income": 62862
+  },
+  "EG": {
+    "name": "Egypt",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "ethnicity": "Egyptian",
+    "income": 62812
+  },
+  "SY": {
+    "name": "Syria",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "ethnicity": "Syrian",
+    "income": 62637
+  },
+  "UA": {
+    "name": "Ukraine",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "ethnicity": "Ukrainian",
+    "income": 62342
+  },
+  "HU": {
+    "name": "Hungary",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "ethnicity": "Hungarian",
+    "income": 62002
+  },
+  "DK": {
+    "name": "Denmark",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "ethnicity": "Danish",
+    "income": 61920
+  },
+  "CA": {
+    "name": "Canada",
+    "region": "Americas",
+    "subregion": "Northern America",
+    "ethnicity": "Canadian",
+    "income": 61716
+  },
+  "SE": {
+    "name": "Sweden",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "ethnicity": "Swedish",
+    "income": 61549
+  },
+  "BO": {
+    "name": "Bolivia",
+    "region": "Americas",
+    "subregion": "South America",
+    "ethnicity": "Bolivian",
+    "income": 61501
+  },
+  "MK": {
+    "name": "Macedonia",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "ethnicity": "Macedonian",
+    "income": 61409
+  },
+  "MY": {
+    "name": "Malaysia",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "ethnicity": "Malaysian",
+    "income": 60613
+  },
+  "PW": {
+    "name": "Palau",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "ethnicity": "Palauan",
+    "income": 60471
+  },
+  "PT": {
+    "name": "Portugal",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "ethnicity": "Portuguese",
+    "income": 60251
+  },
+  "SK": {
+    "name": "Slovakia",
+    "region": "Europe",
+    "subregion": "Eastern Europe",
+    "ethnicity": "Slovak",
+    "income": 59954
+  },
+  "ID": {
+    "name": "Indonesia",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "ethnicity": "Indonesian",
+    "income": 59509
+  },
+  "DE": {
+    "name": "Germany",
+    "region": "Europe",
+    "subregion": "Western Europe",
+    "ethnicity": "German",
+    "income": 59383
+  },
+  "FI": {
+    "name": "Finland",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "ethnicity": "Finnish",
+    "income": 59379
+  },
+  "CL": {
+    "name": "Chile",
+    "region": "Americas",
+    "subregion": "South America",
+    "ethnicity": "Chilean",
+    "income": 58579
+  },
+  "IE": {
+    "name": "Ireland",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "ethnicity": "Irish",
+    "income": 58634
+  },
+  "CM": {
+    "name": "Cameroon",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "ethnicity": "Cameroonian",
+    "income": 57589
+  },
+  "NG": {
+    "name": "Nigeria",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "ethnicity": "Nigerian",
+    "income": 57375
+  },
+  "AM": {
+    "name": "Armenia",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "ethnicity": "Armenian",
+    "income": 56674
+  },
+  "TR": {
+    "name": "Turkey",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "ethnicity": "Turkish",
+    "income": 56480
+  },
+  "PS": {
+    "name": "Palestine",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "ethnicity": "Palestinian",
+    "income": 55950
+  },
+  "SL": {
+    "name": "Sierra Leone",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "ethnicity": "Sierra Leonean",
+    "income": 55305
+  },
+  "VN": {
+    "name": "Vietnam",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "ethnicity": "Vietnamese",
+    "income": 55132
+  },
+  "LA": {
+    "name": "Laos",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "ethnicity": "Laotian",
+    "income": 55119
+  },
+  "GY": {
+    "name": "Guyana",
+    "region": "Americas",
+    "subregion": "South America",
+    "ethnicity": "Guyanese",
+    "income": 54943
+  },
+  "AL": {
+    "name": "Albania",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "ethnicity": "Albanian",
+    "income": 54356
+  },
+  "ES": {
+    "name": "Spain",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "ethnicity": "Spanish",
+    "income": 54275
+  },
+  "BB": {
+    "name": "Barbados",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "ethnicity": "Barbadian",
+    "income": 53978
+  },
+  "DZ": {
+    "name": "Algeria",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "ethnicity": "Algerian",
+    "income": 52815
+  },
+  "WS": {
+    "name": "Samoa",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "ethnicity": "Samoan",
+    "income": 52588
+  },
+  "VE": {
+    "name": "Venezuela",
+    "region": "Americas",
+    "subregion": "South America",
+    "ethnicity": "Venezuelan",
+    "income": 52435
+  },
+  "TH": {
+    "name": "Thailand",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "ethnicity": "Thai",
+    "income": 52367
+  },
+  "KE": {
+    "name": "Kenya",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "ethnicity": "Kenyan",
+    "income": 51725
+  },
+  "GH": {
+    "name": "Ghana",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "ethnicity": "Ghanaian",
+    "income": 51067
+  },
+  "PY": {
+    "name": "Paraguay",
+    "region": "Americas",
+    "subregion": "South America",
+    "ethnicity": "Paraguayan",
+    "income": 50930
+  },
+  "FM": {
+    "name": "Micronesia",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "ethnicity": "Micronesian",
+    "income": 50855
+  },
+  "CO": {
+    "name": "Colombia",
+    "region": "Americas",
+    "subregion": "South America",
+    "ethnicity": "Colombian",
+    "income": 50731
+  },
+  "TO": {
+    "name": "Tonga",
+    "region": "Oceania",
+    "subregion": "Polynesia",
+    "ethnicity": "Tongan",
+    "income": 50257
+  },
+  "CR": {
+    "name": "Costa Rica",
+    "region": "Americas",
+    "subregion": "Central America",
+    "ethnicity": "Costa Rican",
+    "income": 50197
+  },
+  "PE": {
+    "name": "Peru",
+    "region": "Americas",
+    "subregion": "South America",
+    "ethnicity": "Peruvian",
+    "income": 50179
+  },
+  "KH": {
+    "name": "Cambodia",
+    "region": "Asia",
+    "subregion": "South-Eastern Asia",
+    "ethnicity": "Cambodian",
+    "income": 49870
+  },
+  "PA": {
+    "name": "Panama",
+    "region": "Americas",
+    "subregion": "Central America",
+    "ethnicity": "Panamanian",
+    "income": 49834
+  },
+  "BR": {
+    "name": "Brazil",
+    "region": "Americas",
+    "subregion": "South America",
+    "ethnicity": "Brazilian",
+    "income": 49830
+  },
+  "JM": {
+    "name": "Jamaica",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "ethnicity": "Jamaican",
+    "income": 49634
+  },
+  "NI": {
+    "name": "Nicaragua",
+    "region": "Americas",
+    "subregion": "Central America",
+    "ethnicity": "Nicaraguan",
+    "income": 49335
+  },
+  "GD": {
+    "name": "Grenada",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "ethnicity": "Grenadian",
+    "income": 49097
+  },
+  "UY": {
+    "name": "Uruguay",
+    "region": "Americas",
+    "subregion": "South America",
+    "ethnicity": "Uruguayan",
+    "income": 48991
+  },
+  "JO": {
+    "name": "Jordan",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "ethnicity": "Jordanian",
+    "income": 47692
+  },
+  "BZ": {
+    "name": "Belize",
+    "region": "Americas",
+    "subregion": "Central America",
+    "ethnicity": "Belizean",
+    "income": 46453
+  },
+  "NP": {
+    "name": "Nepal",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "ethnicity": "Nepalese",
+    "income": 46351
+  },
+  "BD": {
+    "name": "Bangladesh",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "ethnicity": "Bangladeshi",
+    "income": 46157
+  },
+  "LC": {
+    "name": "Saint Lucia",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "ethnicity": "Saint Lucian",
+    "income": 45073
+  },
+  "MA": {
+    "name": "Morocco",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "ethnicity": "Moroccan",
+    "income": 44521
+  },
+  "SV": {
+    "name": "El Salvador",
+    "region": "Americas",
+    "subregion": "Central America",
+    "ethnicity": "Salvadoran",
+    "income": 44322
+  },
+  "HT": {
+    "name": "Haiti",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "ethnicity": "Haitian",
+    "income": 44135
+  },
+  "CU": {
+    "name": "Cuba",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "ethnicity": "Cuban",
+    "income": 43857
+  },
+  "LT": {
+    "name": "Lithuania",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "ethnicity": "Lithuanian",
+    "income": 43023
+  },
+  "AF": {
+    "name": "Afghanistan",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "ethnicity": "Afghan",
+    "income": 42682
+  },
+  "BS": {
+    "name": "Bahamas",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "ethnicity": "Bahamian",
+    "income": 41925
+  },
+  "GT": {
+    "name": "Guatemala",
+    "region": "Americas",
+    "subregion": "Central America",
+    "ethnicity": "Guatemalan",
+    "income": 41372
+  },
+  "MX": {
+    "name": "Mexico",
+    "region": "Americas",
+    "subregion": "Central America",
+    "ethnicity": "Mexican",
+    "income": 40588
+  },
+  "ET": {
+    "name": "Ethiopia",
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "ethnicity": "Ethiopian",
+    "income": 40309
+  },
+  "LR": {
+    "name": "Liberia",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "ethnicity": "Liberian",
+    "income": 40277
+  },
+  "SN": {
+    "name": "Senegal",
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "ethnicity": "Senegalese",
+    "income": 39410
+  },
+  "PR": {
+    "name": "Puerto Rico",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "ethnicity": "Puerto Rican",
+    "income": 38426
+  },
+  "HN": {
+    "name": "Honduras",
+    "region": "Americas",
+    "subregion": "Central America",
+    "ethnicity": "Honduran",
+    "income": 37901
+  },
+  "YE": {
+    "name": "Yemen",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "ethnicity": "Yemeni",
+    "income": 34667
+  },
+  "SD": {
+    "name": "Sudan",
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "ethnicity": "Sudanese",
+    "income": 32165
+  },
+  "IQ": {
+    "name": "Iraq",
+    "region": "Asia",
+    "subregion": "Western Asia",
+    "ethnicity": "Iraqi",
+    "income": 32075
+  },
+  "MN": {
+    "name": "Mongolia",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "ethnicity": "Mongolian",
+    "income": 31915
+  },
+  "MH": {
+    "name": "Marshall Islands",
+    "region": "Oceania",
+    "subregion": "Micronesia",
+    "ethnicity": "Marshallese",
+    "income": 26914
+  },
+  "BT": {
+    "name": "Bhutan",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "ethnicity": "Bhutanese",
+    "income": 17843
+  }
+}

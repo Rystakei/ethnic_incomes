@@ -3,9 +3,14 @@
 var sortedCountries = {};
 
 Countries.forEach((function(country) {
-	country.income = Math.floor(Math.random() * 85000) + 15000
-	sortedCountries[country.cca2]=country;
-	console.log("Income for the " + country.demonym + " is: " + country.income);
+	if (Incomes[country.cca2]){
+		country.income = Incomes[country.cca2].income;
+		sortedCountries[country.cca2]=country;
+	}
+	else {
+		country.income = 0;
+		console.log("No income for " + country.name.common, country.cca2);
+	}
 }));
 
 var FilterRegionsSection = React.createClass({
@@ -142,13 +147,7 @@ var WorldMap = React.createClass({
 
 var Container = React.createClass({
 	getInitialState: function() {
-		// var countries = {
-		// 				"IT": {name: "Italy", code: "IT", "demonym": "Italian", income: 50000},
-		// 				"HR": {name: "Croatia", code: "HR", "demonym": "Croatian", income: 46000}
-		// 				};
-		var countries = sortedCountries;
-
-		return {selectedRegionCode: "HR", countries: countries};
+		return {selectedRegionCode: "HR", countries: sortedCountries};
 	 },
 
 	handleChange: function(e) {
