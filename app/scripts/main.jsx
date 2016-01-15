@@ -1,8 +1,16 @@
 'use strict';
 
+var sortedCountries = {};
+
+Countries.forEach((function(country) {
+	country.income = Math.floor(Math.random() * 85000) + 15000
+	sortedCountries[country.cca2]=country;
+	console.log("Income for the " + country.demonym + " is: " + country.income);
+}));
+
 var FilterRegionsSection = React.createClass({
 	getInitialState: function(e) {
-		return { value: 'HR'};
+		return { value: ''};
 	},
 	handleChange: function(e) {
 		this.setState({value: e.target.value}, function() {
@@ -13,7 +21,7 @@ var FilterRegionsSection = React.createClass({
 		var options = [];
 
 		$.each(this.props.countries, function(key, country) {
-			options.push(<option key={country.code} value={country.code}>{country.name}</option>);
+			options.push(<option key={country.cca2} value={country.cca2}>{country.name.common}</option>);
 		});
 
 		return (
@@ -53,6 +61,7 @@ var IncomeGraph = React.createClass({
 
 var RegionChart = React.createClass({
 	render: function() {
+		console.log("the country", this.props.country.demonym);
 		return (
 			<div className="chart-info">
 			  <h1> {this.props.country.demonym} American Household Income</h1>
@@ -133,10 +142,11 @@ var WorldMap = React.createClass({
 
 var Container = React.createClass({
 	getInitialState: function() {
-		var countries = {
-						"IT": {name: "Italy", code: "IT", "demonym": "Italian", income: 50000},
-						"HR": {name: "Croatia", code: "HR", "demonym": "Croatian", income: 46000}
-						};
+		// var countries = {
+		// 				"IT": {name: "Italy", code: "IT", "demonym": "Italian", income: 50000},
+		// 				"HR": {name: "Croatia", code: "HR", "demonym": "Croatian", income: 46000}
+		// 				};
+		var countries = sortedCountries;
 
 		return {selectedRegionCode: "HR", countries: countries};
 	 },
