@@ -18,23 +18,35 @@ var FilterRegionsSection = React.createClass({
 		return { value: ''};
 	},
 	handleChange: function(e) {
-		this.setState({value: e.target.value}, function() {
-			this.props.callbackParent(e.target.value);
+		var value = e.value;
+		var that = this;
+		this.setState({value: e.value}, function() {
+			that.props.callbackParent(e.value);
 		});
 	},
 	render: function() {
-		var options = [];
+		// var options = [];
 
+		// $.each(this.props.countries, function(key, country) {
+		// 	options.push(<option key={country.cca2} value={country.cca2}>{country.name.common}</option>);
+		// });
+
+		var newOptions = [];
 		$.each(this.props.countries, function(key, country) {
-			options.push(<option key={country.cca2} value={country.cca2}>{country.name.common}</option>);
+
+			newOptions.push({value: country.cca2, label: country.name.common});
 		});
+
 
 		return (
 			<div className="world-chart-col">
 			  <label>Countries</label>
-			  <select onChange={this.handleChange} value={this.state.value} className="form-control countries-select">
-			  {options}
-			  </select>
+			  <Select
+			      name="form-field-name"
+			      value={this.state.value}
+			      options={newOptions}
+			      onChange={this.handleChange}
+			  />
 
         	<WorldMap countryCode={this.state.value}></WorldMap>
 			</div>
@@ -111,7 +123,7 @@ var WorldMap = React.createClass({
        selectedColor = '#3e9d01',
        countryCode = this.props.countryCode;
 
-    $(React.findDOMNode(this.refs.WorldVectorMap)).vectorMap({map: 'world_mill_en', 
+    $(ReactDOM.findDOMNode(this.refs.WorldVectorMap)).vectorMap({map: 'world_mill_en', 
       backgroundColor: 'white',
       regionStyle: {
           initial: {
