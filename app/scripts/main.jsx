@@ -1,40 +1,68 @@
 'use strict';
 
-var sortedCountries = {};
+var sortedCountries = {},
+	subRegions = {},
+	regions = {};
 
-Countries.forEach((function(country) {
-	if (Incomes[country.cca2]){
-		country.income = Incomes[country.cca2].income;
-		sortedCountries[country.cca2]=country;
+function addToAreaIncomes(areaList, area, income) {
+	if (areaList[area]) {
+		areaList[area].incomes.push(income);
 	}
 	else {
-		country.income = 0;
+		areaList[area]={incomes: [income]};
+	}
+}
+
+function calculateAreaAverage(area) {
+	$.each(area, function(key, area) {
+		area.averageIncome = getAverage(area.incomes);
+		console.log("average income for " + key + ":" + area.averageIncome);
+	});
+}
+
+function getAverage(arr){
+	var sum = _.reduce(arr, function(a,b) {
+		return a + b;
+	});
+	return (sum / arr.length).toFixed(2);
+}
+
+Countries.forEach((function(country) {
+	if (Incomes[country.cca2]) {
+		country.income = Incomes[country.cca2].income;
+
+		sortedCountries[country.cca2]=country;
+
+		addToAreaIncomes(subRegions, country.subregion, country.income);
+		addToAreaIncomes(regions, country.region, country.income);
+	}
+	else {
 		console.log("No income for " + country.name.common, country.cca2);
 	}
 }));
+
+
+calculateAreaAverage(subRegions);
+calculateAreaAverage(regions);
+
+//end processing
+
 
 var FilterRegionsSection = React.createClass({
 	getInitialState: function(e) {
 		return { value: ''};
 	},
 	handleChange: function(e) {
-		var value = e.value;
-		var that = this;
+		var value = e.value,
+			that = this;
 		this.setState({value: e.value}, function() {
 			that.props.callbackParent(e.value);
 		});
 	},
 	render: function() {
-		// var options = [];
-
-		// $.each(this.props.countries, function(key, country) {
-		// 	options.push(<option key={country.cca2} value={country.cca2}>{country.name.common}</option>);
-		// });
-
-		var newOptions = [];
+		var options = [];
 		$.each(this.props.countries, function(key, country) {
-
-			newOptions.push({value: country.cca2, label: country.name.common});
+			options.push({value: country.cca2, label: country.name.common});
 		});
 
 
@@ -42,13 +70,11 @@ var FilterRegionsSection = React.createClass({
 			<div className="world-chart-col">
 			  <label>Countries</label>
 			  <Select
-			      name="form-field-name"
 			      value={this.state.value}
-			      options={newOptions}
+			      options={options}
 			      onChange={this.handleChange}
 			  />
-
-        	<WorldMap countryCode={this.state.value}></WorldMap>
+        	  <WorldMap countryCode={this.state.value}></WorldMap>
 			</div>
 		);
 	}
@@ -61,11 +87,15 @@ var IncomeGraph = React.createClass({
         regionLabel = "" + country.demonym + " American",
 		    data = {
             		labels: ['General American',
-                         regionLabel, 
-                         'W. European American',
-                         'European American'],
+                         regionLabel,
+                         country.subregion + ' American',
+                         country.region + ' American'],
             		series: [
-            			       [50000, country.income, 55000, 45000]
+            			       [50000,
+            			        country.income,
+            			        subRegions[country.subregion].averageIncome,
+            			        regions[country.region].averageIncome
+            			       ]
             		        ]
             	},
 
