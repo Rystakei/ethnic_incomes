@@ -2,7 +2,19 @@
 
 var sortedCountries = {},
 	subRegions = {},
-	regions = {};
+	regions = {},
+	unavailableCountries = [];
+
+function setDefaultColors(value) {
+	if (!value){
+		var value = '#D2D7D3';
+	}
+	var defaultColors = {};
+	unavailableCountries.forEach((function(countryCode){
+		defaultColors[countryCode]=value;
+	}));
+	return defaultColors;
+}
 
 function addToAreaIncomes(areaList, area, income) {
 	if (areaList[area]) {
@@ -16,7 +28,6 @@ function addToAreaIncomes(areaList, area, income) {
 function calculateAreaAverage(area) {
 	$.each(area, function(key, area) {
 		area.averageIncome = getAverage(area.incomes);
-		console.log("average income for " + key + ":" + area.averageIncome);
 	});
 }
 
@@ -37,7 +48,7 @@ Countries.forEach((function(country) {
 		addToAreaIncomes(regions, country.region, country.income);
 	}
 	else {
-		console.log("No income for " + country.name.common, country.cca2);
+		unavailableCountries.push(country.cca2);
 	}
 }));
 
@@ -59,6 +70,13 @@ var FilterRegionsSection = React.createClass({
 			that.props.callbackParent(e.value);
 		});
 	},
+
+	handleChildUpdate: function(value){
+		this.setState({value: value}, function() {
+			this.props.callbackParent(value);
+		});
+	},
+
 	render: function() {
 		var options = [];
 		$.each(this.props.countries, function(key, country) {
@@ -74,7 +92,7 @@ var FilterRegionsSection = React.createClass({
 			      options={options}
 			      onChange={this.handleChange}
 			  />
-        	  <WorldMap countryCode={this.state.value}></WorldMap>
+        	  <WorldMap callbackParent={this.handleChildUpdate} countryCode={this.state.value}></WorldMap>
 			</div>
 		);
 	}
@@ -84,20 +102,20 @@ var FilterRegionsSection = React.createClass({
 var IncomeGraph = React.createClass({
 	render: function() {
 		var country = this.props.country,
-        regionLabel = "" + country.demonym + " American",
+	        regionLabel = "" + country.demonym + " American",
 		    data = {
-            		labels: ['General American',
-                         regionLabel,
-                         country.subregion + ' American',
-                         country.region + ' American'],
-            		series: [
-            			       [50000,
-            			        country.income,
-            			        subRegions[country.subregion].averageIncome,
-            			        regions[country.region].averageIncome
-            			       ]
-            		        ]
-            	},
+	        		labels: ['General American',
+	                     regionLabel,
+	                     country.subregion + ' American',
+	                     country.region + ' American'],
+	        		series: [
+	        			       [50000,
+	        			        country.income,
+	        			        subRegions[country.subregion].averageIncome,
+	        			        regions[country.region].averageIncome
+	        			       ]
+	        		        ]
+	        	},
 
 		    type = 'Bar';
 		return (
@@ -108,7 +126,6 @@ var IncomeGraph = React.createClass({
 
 var RegionChart = React.createClass({
 	render: function() {
-		console.log("the country", this.props.country.demonym);
 		return (
 			<div className="chart-info">
 			  <h1> {this.props.country.demonym} American Household Income</h1>
@@ -126,41 +143,27 @@ var mapObject;
 
 var WorldMap = React.createClass({
   getInitialState: function() {
-    var options = { 
-          map: 'world_mill_en', 
-          backgroundColor: 'white',
-          regionStyle: {
-              initial: {
-                fill: '#B8E186'
-              },
-              selected: {
-                fill: '#F4A582'
-              }
-            },
-          series: {
-            regions: [{
-              attribute: 'fill',
-              color: 'pink'
-            }]
-          }
-        };
+  	// var initialColor = '#B8E186',
+   //      oldSelectedColor = '#3e9d01',
+   //      selectedColor = '#26C281',
+   //      colorValues = setDefaultColors();
 
-        return {options: options};
+   //base: 76B36D
+
+        return {selectedColor: '#43803A',
+        		initialColor: '#A9E6A0'
+        	   };
   },
 
   componentDidMount: function() {
-    var initialColor = '#B8E186',
-       selectedColor = '#3e9d01',
-       countryCode = this.props.countryCode;
+    var that = this;
 
-    $(ReactDOM.findDOMNode(this.refs.WorldVectorMap)).vectorMap({map: 'world_mill_en', 
+    $(ReactDOM.findDOMNode(this.refs.WorldVectorMap)).vectorMap({
+      map: 'world_mill_en', 
       backgroundColor: 'white',
       regionStyle: {
           initial: {
-            fill: '#B8E186'
-          },
-          selected: {
-            fill: '#F4A582'
+            fill: that.state.initialColor
           }
         },
       series: {
@@ -168,21 +171,43 @@ var WorldMap = React.createClass({
           attribute: 'fill',
           color: 'pink'
         }]
-      }
-      });
+      },
+      onRegionOver: function(e, code) {
+      	if (unavailableCountries.indexOf(code) === -1) {
+      		document.body.style.cursor = 'pointer';
+      	}
+      },
+
+      onRegionOut: function(e, code) {
+      	document.body.style.cursor = 'default';
+      },
+      onRegionClick: function(e, code) {
+      	if (unavailableCountries.indexOf(code) === -1) {
+      		that.props.callbackParent(code);
+      	}
+      } 
+    });
 
     mapObject = $('#world-map').vectorMap('get', 'mapObject');
+    this.resetMapColors();
   },
 
-  componentWillUpdate: function() {
-  	var colorValues = {};
-	  	colorValues[this.props.countryCode]="red";  
+  resetMapColors: function(region) {
+  	var colorValues = setDefaultColors();
+  		if (region) {
+		  	colorValues[region]=this.state.selectedColor;  	
+  		}
   		mapObject.reset();
 	  	mapObject.series.regions[0].setValues(colorValues);
   },
 
+  componentWillUpdate: function() {
+  	this.resetMapColors(this.props.countryCode);
+  },
+
   render: function() {
-    return (<div id="world-map" className="col-md-6 map" ref="WorldVectorMap"></div>);
+    return (<div id="world-map" className="col-md-6 map" 
+    		ref="WorldVectorMap"></div>);
   }
 });
 
