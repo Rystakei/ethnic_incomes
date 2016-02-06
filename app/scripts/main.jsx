@@ -31,7 +31,7 @@ function calculateAreaAverage(area) {
 	});
 }
 
-function getAverage(arr){
+function getAverage(arr) {
 	var sum = _.reduce(arr, function(a,b) {
 		return a + b;
 	});
@@ -105,9 +105,9 @@ var IncomeGraph = React.createClass({
 	        regionLabel = "" + country.demonym + " American",
 		    data = {
 	        		labels: ['General American',
-	                     regionLabel,
-	                     country.subregion + ' American',
-	                     country.region + ' American'],
+		                     regionLabel,
+		                     country.subregion + ' American',
+		                     country.region + ' American'],
 	        		series: [
 	        			       [50000,
 	        			        country.income,
@@ -117,9 +117,10 @@ var IncomeGraph = React.createClass({
 	        		        ]
 	        	},
 
-		    type = 'Bar';
+		    type = 'Bar',
+		    options = {high: 100000, low: 10000};
 		return (
-			<ChartistGraph data={data} type={type} />
+			<ChartistGraph data={data} type={type} options={options}/>
 		);
 }
 });
@@ -143,16 +144,9 @@ var mapObject;
 
 var WorldMap = React.createClass({
   getInitialState: function() {
-  	// var initialColor = '#B8E186',
-   //      oldSelectedColor = '#3e9d01',
-   //      selectedColor = '#26C281',
-   //      colorValues = setDefaultColors();
-
    //base: 76B36D
 
-        return {selectedColor: '#43803A',
-        		initialColor: '#A9E6A0'
-        	   };
+        return {selectedColor: '#43803A', initialColor: '#A9E6A0'};
   },
 
   componentDidMount: function() {
@@ -227,7 +221,10 @@ var Container = React.createClass({
 		return (
 		    <div className="container">
 		      <div className="row marketing">
-		        <div> <h1> U.S. Household Income by National Origin</h1></div>
+		        <div>
+		        	<h1> U.S. Household Income by National Origin</h1>
+		        	<p> Select a country by clicking on it directly or by using the dropdown. </p>
+		        </div>
 		        <div id="filter-regions" className="col-md-6">
 		        	<FilterRegionsSection countries={this.state.countries} 
 		        		callbackParent={this.onChildChanged} />

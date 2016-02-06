@@ -4,6 +4,10 @@ $icon-font-path: '../fonts/';
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+h1 {
+  font-size: 26px;
+}
+
 .browserupgrade {
   margin: 0.2em 0;
   background: #ccc;
@@ -24,7 +28,7 @@ $icon-font-path: '../fonts/';
 }
 
 .ct-label.ct-horizontal {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 

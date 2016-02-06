@@ -1,10 +1,10 @@
 {
-  "DM": {
-    "name": "Dominica",
-    "region": "Americas",
-    "subregion": "Caribbean",
-    "ethnicity": "Dominican",
-    "income": 34925
+  "IN": {
+    "name": "India",
+    "region": "Asia",
+    "subregion": "Southern Asia",
+    "ethnicity": "Indian",
+    "income": 86135
   },
   "ZA": {
     "name": "South Africa",
@@ -83,6 +83,13 @@
     "ethnicity": "Lebanese",
     "income": 67264
   },
+  "CN": {
+    "name": "China",
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "ethnicity": "Chinese",
+    "income": 67211
+  },
   "FJ": {
     "name": "Fiji",
     "region": "Oceania",
@@ -103,6 +110,13 @@
     "subregion": "Western Asia",
     "ethnicity": "Israeli",
     "income": 66695
+  },
+  "BV": {
+    "name": "Bouvet Island",
+    "region": "",
+    "subregion": "",
+    "ethnicity": "",
+    "income": 40977
   },
   "JP": {
     "name": "Japan",
@@ -138,6 +152,13 @@
     "subregion": "Eastern Europe",
     "ethnicity": "Romanian",
     "income": 64390
+  },
+  "IT": {
+    "name": "Italy",
+    "region": "Europe",
+    "subregion": "Southern Europe",
+    "ethnicity": "Italian",
+    "income": 64301
   },
   "GR": {
     "name": "Greece",
@@ -236,6 +257,13 @@
     "subregion": "Southern Europe",
     "ethnicity": "Macedonian",
     "income": 61409
+  },
+  "NO": {
+    "name": "Norway",
+    "region": "Europe",
+    "subregion": "Northern Europe",
+    "ethnicity": "Norwegian",
+    "income": 60935
   },
   "MY": {
     "name": "Malaysia",
@@ -356,6 +384,13 @@
     "ethnicity": "Laotian",
     "income": 55119
   },
+  "TF": {
+    "name": "French Southern and Antarctic Lands",
+    "region": "",
+    "subregion": "",
+    "ethnicity": "French",
+    "income": 55071
+  },
   "GY": {
     "name": "Guyana",
     "region": "Americas",
@@ -376,6 +411,13 @@
     "subregion": "Southern Europe",
     "ethnicity": "Spanish",
     "income": 54275
+  },
+  "CW": {
+    "name": "Curaçao",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "ethnicity": "Dutch",
+    "income": 53985
   },
   "BB": {
     "name": "Barbados",
@@ -601,6 +643,13 @@
     "ethnicity": "Bahamian",
     "income": 41925
   },
+  "CD": {
+    "name": "DR Congo",
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "ethnicity": "Congolese",
+    "income": 41563
+  },
   "GT": {
     "name": "Guatemala",
     "region": "Americas",
@@ -649,6 +698,13 @@
     "subregion": "Central America",
     "ethnicity": "Honduran",
     "income": 37901
+  },
+  "DM": {
+    "name": "Dominica",
+    "region": "Americas",
+    "subregion": "Caribbean",
+    "ethnicity": "Dominican",
+    "income": 34925
   },
   "YE": {
     "name": "Yemen",
